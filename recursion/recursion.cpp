@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <cmath>
 
 // 0 1 1 2 3 5 8 ...
 int fibonacci(int number)
@@ -150,7 +151,6 @@ int find(const std::string &str, const std::string &subStr, int index)
 
 bool isDigit(char maybeDigit)
 {
-    std::cout << maybeDigit << "\n";
     return (maybeDigit <= '9' && maybeDigit >= '0');
 }
 
@@ -170,8 +170,9 @@ int atoi(char *str, int length)
         return *str - '0';
     }
 
-// bug was: 
-    return (atoi(str + 1, length - 1) + 10 * (*str - '0'));
+    // bug was: missing degree
+    int degree = pow(10, length - 1);
+    return (degree * (*str - '0') + atoi(str + 1, length - 1));
 }
 
 // '1234' -> (1 * 10 + 2) * 10 + 3 ...
@@ -218,8 +219,8 @@ int getMax(int *arr, int n) {
 int main()
 {
 
-    // testAtoI();
-    testPrint();
+    testAtoI();
+    // testPrint();
 
     return 0;
 }
